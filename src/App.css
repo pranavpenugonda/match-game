@@ -148,16 +148,22 @@ body {
 }
 
 .play-again-btn {
-  background-color: #cf60c8;
-  padding: 5px;
-  border: 0px;
-  cursor: pointer;
-  display: flex;
+  background-color: transparent;
   outline: none;
+  cursor: pointer;
+  border: 0px;
 }
 
 .your-score-txt {
   font-family: 'Roboto';
   color: #ffffff;
   font-size: 22px;
+}
+
+.play-again-btn-container {
+  background-color: #cf60c8;
+  padding: 5px;
+  border: 0px;
+  cursor: pointer;
+  display: flex;
 }

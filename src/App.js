@@ -290,7 +290,9 @@ class App extends Component {
   }
 
   onPlayAgainGame = () => {
+    this.clearTimer()
     this.setState({thumbnailAndImageAreSame: false, score: 0, timer: 60})
+    this.startTimer()
   }
 
   startTimer = () => {
@@ -324,27 +326,57 @@ class App extends Component {
     const filteredImages = imagesList.filter(
       eachImage => eachImage.category === activeTabId,
     )
+    if (timer <= 0) {
+      return (
+        <div className="game-lost-bg-container">
+          <img
+            src="https://assets.ccbp.in/frontend/react-js/match-game-trophy.png"
+            alt="trophy"
+            className="trophy-img"
+          />
+          <p className="your-score-txt">YOUR SCORE</p>
+          <p className="your-score-txt">{score}</p>
+          <div className="play-again-btn-container">
+            <img
+              src="https://assets.ccbp.in/frontend/react-js/match-game-play-again-img.png"
+              alt="reset"
+              className="timer-img"
+            />
+            <button
+              type="button"
+              className="play-again-btn"
+              onClick={this.onPlayAgainGame}
+            >
+              PLAY AGAIN
+            </button>
+          </div>
+        </div>
+      )
+    }
     return (
       <div>
         <div className="nav-bar">
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/match-game-website-logo.png"
-            alt="website logo"
-            className="website-logo"
-          />
-          <div className="score-time-container">
-            <p className="score-heading">
-              Score: <span className="score-value">{score}</span>
-            </p>
-            <div className="timer-container">
+          <ul className="nav-bar">
+            <li>
               <img
-                src="https://assets.ccbp.in/frontend/react-js/match-game-timer-img.png"
-                alt="timer"
-                className="timer-img"
+                src="https://assets.ccbp.in/frontend/react-js/match-game-website-logo.png"
+                alt="website logo"
+                className="website-logo"
               />
-              <p className="score-value">{`${timer}  sec`}</p>
-            </div>
-          </div>
+            </li>
+            <li className="score-time-container">
+              <p className="score-heading">Score:</p>
+              <p className="score-value">{score}</p>
+              <div className="timer-container">
+                <img
+                  src="https://assets.ccbp.in/frontend/react-js/match-game-timer-img.png"
+                  alt="timer"
+                  className="timer-img"
+                />
+                <p className="score-value">{`${timer}  sec`}</p>
+              </div>
+            </li>
+          </ul>
         </div>
         <div className="bg-container">
           {!thumbnailAndImageAreSame ? (
@@ -394,18 +426,20 @@ class App extends Component {
               />
               <h1 className="your-score-txt">Your Score</h1>
               <h1 className="your-score-txt">{score}</h1>
-              <button
-                type="button"
-                className="play-again-btn"
-                onClick={this.onPlayAgainGame}
-              >
+              <div className="play-again-btn-container">
                 <img
                   src="https://assets.ccbp.in/frontend/react-js/match-game-play-again-img.png"
                   alt="reset"
                   className="timer-img"
                 />
-                <h1 className="your-score-txt">PLAY AGAIN</h1>
-              </button>
+                <button
+                  type="button"
+                  className="play-again-btn"
+                  onClick={this.onPlayAgainGame}
+                >
+                  PLAY AGAIN
+                </button>
+              </div>
             </div>
           )}
         </div>
