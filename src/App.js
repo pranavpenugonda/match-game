@@ -276,7 +276,7 @@ class App extends Component {
     const {index} = this.state
     if (activeImageId === imagesList[index].id) {
       console.log(true)
-      const randomIndex = Math.floor(Math.random() * 29)
+      const randomIndex = Math.floor(Math.random() * imagesList.length)
 
       //   this.setState({index: randomIndex})
       this.setState(prevState => ({
