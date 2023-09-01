@@ -291,8 +291,15 @@ class App extends Component {
 
   onPlayAgainGame = () => {
     this.clearTimer()
-    this.setState({thumbnailAndImageAreSame: false, score: 0, timer: 60})
+    this.setState({
+      thumbnailAndImageAreSame: false,
+      score: 0,
+      timer: 60,
+      activeTabId: 'FRUIT',
+      index: 0,
+    })
     this.startTimer()
+    console.log('onPlayAgainGame')
   }
 
   startTimer = () => {
